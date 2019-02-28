@@ -34,14 +34,14 @@ app.get("/wholefoods", async (req, res, next) =>{
 
 
 
-if(process.env.NODE_ENV ) {
+// if(process.env.NODE_ENV === 'production') {
 
   app.use(express.static('/client/build'));
 // //must be set like this so that it reloads with heroku deploy!!!
-  app.get('/', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '/client/build/index.html'));
   });
-}
+// }
 
 app.listen(PORT, function () {
   console.log(`Server is running on port:, ${PORT}`);
