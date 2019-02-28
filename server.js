@@ -34,12 +34,12 @@ app.get("/wholefoods", async (req, res, next) =>{
 
 
 
-if(process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV ) {
 
   app.use(express.static('/client/build'));
 // //must be set like this so that it reloads with heroku deploy!!!
   app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/client/build/index.html'));
+    res.sendFile(path.resolve(__dirname, '/client/build/index.html'));
   });
 }
 
