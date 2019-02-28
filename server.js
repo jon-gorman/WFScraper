@@ -15,7 +15,7 @@ const request = require("request-promise").defaults({
     // limit:50
   }
 })
-app.get("/wholefoods", async (req, res, next) =>{
+app.get("/wholefoods", async (req, res) =>{
   const sort = "relevance";
   const limit = req.query.limit;
   const skip = req.query.skip;
@@ -30,16 +30,17 @@ app.get("/wholefoods", async (req, res, next) =>{
   res.send(json)
 })
 
-// app.use(bodyParser.urlencoded({extended: true}));
-
-
-
 // if(process.env.NODE_ENV === 'production') {
 
-  app.use(express.static('/client/build/index.html'));
+app.use(express.static(path.join(__dirname, '/client/build/')));
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+
+
 // //must be set like this so that it reloads with heroku deploy!!!
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/client/build/index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
   });
 // }
 
