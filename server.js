@@ -8,11 +8,11 @@ app.use(cors());
 
 const request = require("request-promise").defaults({
   Params:{
-    sort: "relevance",
-    store: 10393,
-    skip: 0,
-    filters: "%5B%7B%22ns%22%3A%22text%22%2C%22key%22%3A%22text%22%2C%22value%22%3A%22vegan%22%7D%5D",
-    limit:50
+    // sort: "relevance",
+    // store: 10393,
+    // skip: 0,
+    // filters: "%5B%7B%22ns%22%3A%22text%22%2C%22key%22%3A%22text%22%2C%22value%22%3A%22vegan%22%7D%5D",
+    // limit:50
   }
 })
 app.get("/wholefoods", async (req, res, next) =>{
@@ -30,7 +30,7 @@ app.get("/wholefoods", async (req, res, next) =>{
   res.send(json)
 })
 
-app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.urlencoded({extended: true}));
 
 
 
@@ -38,7 +38,7 @@ if(process.env.NODE_ENV === 'production') {
 
   app.use(express.static('/client/build'));
 // //must be set like this so that it reloads with heroku deploy!!!
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/client/build/index.html'));
   });
 }
