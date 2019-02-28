@@ -38,7 +38,7 @@ app.get("/wholefoods", async (req, res, next) =>{
 
   app.use(express.static('/client/build/index.html'));
 // //must be set like this so that it reloads with heroku deploy!!!
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/client/build/index.html'));
   });
 // }
