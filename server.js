@@ -30,11 +30,15 @@ app.get("/wholefoods", async (req, res) =>{
   res.send(json)
 })
 
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+
 if(process.env.NODE_ENV === 'production') {
 
 app.use(express.static(path.join(__dirname, '/client/build/')));
 
-app.use(bodyParser.urlencoded({extended: true}));
+
 
 // //must be set like this so that it reloads with heroku deploy!!!
 app.get('*', (req, res) => {
