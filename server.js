@@ -5,21 +5,21 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || '4000';
 const path = require('path');
 app.use(cors());
-const wholeFoodsRoute = express.Router()
+// const wholeFoodsRoute = express.Router()
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 const request = require("request-promise").defaults({
-  Params:{
-    sort: "relevance",
-    store: 10393,
-    skip: 0,
-    filters: "%5B%7B%22ns%22%3A%22text%22%2C%22key%22%3A%22text%22%2C%22value%22%3A%22vegan%22%7D%5D",
-    limit:50
-  }
+  // Params:{
+  //   sort: "relevance",
+  //   store: 10393,
+  //   skip: 0,
+  //   filters: "%5B%7B%22ns%22%3A%22text%22%2C%22key%22%3A%22text%22%2C%22value%22%3A%22vegan%22%7D%5D",
+  //   limit:50
+  // }
 });
 app.get("/wholefoods", async (req, res) =>{
   const sort = "relevance";
@@ -35,13 +35,13 @@ app.get("/wholefoods", async (req, res) =>{
   res.setHeader("Content-Type", "application/json");
   res.send(json)
 })
-wholeFoodsRoute.route('/').get(function (req, res){
-  if(err){
-    console.log(err)
-  } else{
-    res.json(json)
-  }
-})
+// wholeFoodsRoute.route('/').get(function (req, res){
+//   if(err){
+//     console.log(err)
+//   } else{
+//     res.json(json)
+//   }
+// })
 //original...
 // app.get("/wholefoods", async (req, res) =>{
 //   const sort = "relevance";
