@@ -43,16 +43,19 @@ class App extends Component {
   handleSearchTerm(event){
     this.setState({ searchTerm: event.target.value })
   }
+
   render() {
     let products = null;
     if (this.state.json.list) {
       console.log(this.state.json.list, "json2")
       products = this.state.json.list.map(product => {
-
         return (
           <div key={product._id}>
             <div>{product.name}</div>
             <img width="300" src={product.image.source}/>
+            <div>{product.store.priceDisplay}</div>
+            <div></div>
+            <br/>
           </div>
         )
       })
