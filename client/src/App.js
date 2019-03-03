@@ -26,8 +26,8 @@ class App extends Component {
   async fetchProducts(searchTerm) {
     const response = await fetch(
       // `https://products.wholefoodsmarket.com/api/search?sort=relevance&store=10393&skip=0&filters=%5B%7B%22ns%22%3A%22text%22%2C%22key%22%3A%22text%22%2C%22value%22%3A%22low%20carb%22%7D%5D&limit=1`
-      `http://localhost:4000/wholefoods?store=10393&sort=relevance&skip=0&filters&value=${searchTerm}/`
-      //   `https://shrouded-meadow-95377.herokuapp.com/wholefoods?store=10393&sort=relevance&skip=0&filters&value=${searchTerm}/`
+      // `http://localhost:4000/wholefoods?store=10393&sort=relevance&skip=0&filters&value=${searchTerm}/`
+        `https://shrouded-meadow-95377.herokuapp.com/wholefoods?store=10393&sort=relevance&skip=0&filters&value=${searchTerm}/`
 
     );
     const json = await response.json()
