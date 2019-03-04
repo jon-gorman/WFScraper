@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
 }
 
 .App-logo {
@@ -21,6 +22,9 @@
 
 .App-link {
   color: #61dafb;
+}
+.form-group{
+  margin: 0 auto;
 }
 
 @keyframes App-logo-spin {

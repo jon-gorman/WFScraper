@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       json: {},
       amount: 20,
-      searchTerm: "vegan jerky",
+      searchTerm: "kale",
       skipping: 0,
 
     };
@@ -84,24 +84,32 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <form onSubmit={this.handleSubmit}>
-          <label>Search</label>
+        <form className="form-inline" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+          <label>
+            <h2>Bee Caves Item Search</h2>
+          </label>
+            <br/>
           <input
             type="text"
+            className="form-control mx-sm-3"
             value={this.state.searchTerm}
             onChange={this.handleSearchTerm}
           />
-          <input type="submit" value="submit"/>
+          <input type="submit" className="btn btn-info" value="Search"/>
+          </div>
         </form>
-        <h3>There is {this.state.json.total} items for this search</h3>
+        <h3>There are {this.state.json.total} items for this search</h3>
         <form onSubmit={this.handleSubmit}>
+          <div>
         {/*<form onSubmit={this.handleSkip}>*/}
 
-        <button onClick={this.handleSkip}>Load More</button>
+        <button className="btn btn-primary" onClick={this.handleSkip}>Load More</button>
+          </div>
         </form>
         {products}
         <form onSubmit={this.handleSubmit}>
-          <button onClick={this.handleSkipBack}>Load Less</button>
+          <button className="btn btn-primary" onClick={this.handleSkipBack}>Load Less</button>
         </form>
       </div>
     );
