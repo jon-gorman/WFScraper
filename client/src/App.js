@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import pic from "./picUnavailable.jpg"
+import honeyComb from"./honeyComb.jpg"
 import './App.css';
 // import logo from './logo.svg';
 
@@ -11,12 +12,14 @@ class App extends Component {
       amount: 20,
       searchTerm: "kale",
       skipping: 0,
+      items: 0
 
     };
     this.handleSkip = this.handleSkip.bind(this);
     this.handleSkipBack = this.handleSkipBack.bind(this)
     this.handleSearchTerm = this.handleSearchTerm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTotals = this.handleTotals.bind(this);
   }
 
   componentDidMount() {
@@ -65,15 +68,37 @@ class App extends Component {
     this.setState({skipping: this.state.skipping - 20})
     console.log(this.state.skipping, "skipback")
   }
+  handleTotals(){
+    if(this.state.items){
+      this.setState({items: this.state.json.items})
+
+    }else{
+     this.setState({items: this.state.json.other.length})
+    }
+  }
 
   render() {
+    let itemsArray=[]
+    let itemsArrayWithout=[0]
+    // let display = 0
     let products = null;
+    let products1 = null
+
     if (this.state.json.list) {
+      // if(itemsArrayWithout=[]){
+      //   console.log("youarehere")
+      //   itemsArrayWithout=[0]
+      // }
+      itemsArray.push(this.state.json.total)
       console.log(this.state.json.list, "json2")
       products = this.state.json.list.map(product => {
+
+        console.log(itemsArray, "items array")
         return (
           <div key={product._id}>
+            <div>{product.meta.brand}</div>
             <div>{product.name}</div>
+
             <img width="300" src={product.image.source} alt="productPics"/>
             <div>{product.store.priceDisplay}</div>
             <div></div>
@@ -81,15 +106,34 @@ class App extends Component {
           </div>
         )
       })
+    } if(this.state.json.other){
+      itemsArrayWithout.shift()
+      itemsArrayWithout.push(this.state.json.other.length)
+
+      console.log("this item has no pic and no list arrray")
+      products1=this.state.json.other.map(product1 => {
+        return(
+          <div>
+          <div key={product1.name} >
+            <div>{product1.meta.brand}</div>
+            <div>{product1.name}</div>
+            <img width="300" src={pic} alt="productPics"/>
+            {/*<div>{product1.store.price}</div>*/}
+            <div></div>
+            <br/>
+          </div>
+          </div>
+        )
+      })
     }
     return (
       <div className="App">
+        <img width="100" src={honeyComb}/>
+        <h2>Bee Caves Item Search</h2>
+
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
-          <label>
-            <h2>Bee Caves Item Search</h2>
-          </label>
-            <br/>
+
           <input
             type="text"
             className="form-control mx-sm-3"
@@ -99,7 +143,9 @@ class App extends Component {
           <input type="submit" className="btn btn-info" value="Search"/>
           </div>
         </form>
-        <h3>There are {this.state.json.total} items for this search</h3>
+        <h3>There are {itemsArray} results for this search</h3>
+        <h3>And there are {itemsArrayWithout} secondary results</h3>
+
         <form onSubmit={this.handleSubmit}>
           <div>
         {/*<form onSubmit={this.handleSkip}>*/}
@@ -108,9 +154,11 @@ class App extends Component {
           </div>
         </form>
         {products}
+        {products1}
         <form onSubmit={this.handleSubmit}>
           <button className="btn btn-primary" onClick={this.handleSkipBack}>Load Less</button>
         </form>
+
       </div>
     );
   }

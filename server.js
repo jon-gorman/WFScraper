@@ -26,9 +26,12 @@ app.get("/wholefoods", async (req, res) =>{
   const limit = req.query.limit;
   const skip = req.query.skip;
   const store = req.query.store;
-  const keyword = encodeURIComponent(req.query.value);
+  // const keyword = encodeURIComponent(req.query.value);
+  const keyword = (req.query.value);
+
   // const filters=encodeURIComponent(JSON.stringify([{ns: "text",key:"text", value:`${variables}`}]))
-  const filters=`%5B%7B%22ns%22%3A%22text%22%2C%22key%22%3A%22text%22%2C%22value%22%3A%22${keyword}%22%7D%5D`
+  const filters=`%5B%7B%22ns%22%3A%22text%22%2C%22key%22%3A%22text%22%2C%22value%22%3A%22${keyword}%20%22%7D%5D`;
+  // const filters=`%5B%7B%22ns%22%3A%22text%22%2C%22key%22%3A%22text%22%2C%22value%22%3A%22${keyword}%22%7D%5D`
   const url = `https://products.wholefoodsmarket.com/api/search?limit=${limit}&sort=${sort}&store=${store}&skip=${skip}&filters=${filters}`;
   console.log(url);
   const json = await request.get(url);
