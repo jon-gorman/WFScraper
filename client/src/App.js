@@ -128,7 +128,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <img width="100" src={honeyComb}/>
+        {/*<img width="100" src={honeyComb}/>*/}
         <h2>Bee Caves Item Search</h2>
 
         <form className="form-inline" onSubmit={this.handleSubmit}>
