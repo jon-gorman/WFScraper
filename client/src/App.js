@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import pic from "./picUnavailable.jpg"
-import honeyComb from"./honeyComb.jpg"
+import pic from "./picUnavailable.jpg";
 import './App.css';
 // import logo from './logo.svg';
 
@@ -35,7 +34,7 @@ class App extends Component {
         `https://shrouded-meadow-95377.herokuapp.com/wholefoods?store=10393&sort=relevance&skip=${this.state.skipping}&filters&value=${searchTerm}/`
 
     );
-    const json = await response.json()
+    const json = await response.json();
     this.setState({json});
     console.log(this.state.json, "json1")
   }
@@ -52,13 +51,6 @@ class App extends Component {
     this.setState({ searchTerm: event.target.value })
   }
 
-  // handleSkip(){
-  //   for(let i = 0; i < this.state.total; i++){
-  //     if(this.state.skipping <= this.state.total){
-  //       this.setState({skipping: this.state.skipping += 20})
-  //     }
-  //   }
-  // }
   //This is working handleSkip :)
   handleSkip(){
     this.setState({ skipping: this.state.skipping + 20})
@@ -85,10 +77,6 @@ class App extends Component {
     let products1 = null
 
     if (this.state.json.list) {
-      // if(itemsArrayWithout=[]){
-      //   console.log("youarehere")
-      //   itemsArrayWithout=[0]
-      // }
       itemsArray.push(this.state.json.total)
       console.log(this.state.json.list, "json2")
       products = this.state.json.list.map(product => {
@@ -128,7 +116,6 @@ class App extends Component {
     }
     return (
       <div className="App">
-        {/*<img width="100" src={honeyComb}/>*/}
         <h2>Bee Caves Item Search</h2>
 
         <form className="form-inline" onSubmit={this.handleSubmit}>
